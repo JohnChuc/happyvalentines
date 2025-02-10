@@ -152,14 +152,6 @@ export default function Home() {
             </motion.div>
           </div>
         )}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="mt-12 text-white text-lg text-center relative z-10"
-        >
-          💝 Pick any button - they both lead to happiness! 💝
-        </motion.div>
       </motion.div>
     </div>
   );
