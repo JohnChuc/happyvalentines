@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Heart } from "lucide-react";
 import { useEffect, useState } from "react";
+import confetti from 'canvas-confetti';
 
 interface Star {
   id: number;
@@ -27,11 +28,38 @@ export default function Home() {
   const [stars] = useState<Star[]>(() => generateStars(50));
 
   const handleYesClick = () => {
+    // Show toast message
     toast({
       title: "Yay! 💖",
       description: "Thank you for saying yes! You've made me the happiest person!",
       duration: 5000,
     });
+
+    // Trigger confetti
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#ff69b4', '#ff1493', '#ff69b4', '#ffffff']
+    });
+
+    // Add a second burst of confetti for more festivity
+    setTimeout(() => {
+      confetti({
+        particleCount: 50,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: ['#ff69b4', '#ff1493', '#ff69b4', '#ffffff']
+      });
+      confetti({
+        particleCount: 50,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: ['#ff69b4', '#ff1493', '#ff69b4', '#ffffff']
+      });
+    }, 150);
   };
 
   const bounceAnimation = {
