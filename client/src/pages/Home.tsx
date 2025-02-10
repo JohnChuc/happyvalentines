@@ -31,7 +31,7 @@ export default function Home() {
     // Show toast message
     toast({
       title: "Yay! 💖",
-      description: "Thank you for saying yes! You've made me the happiest person!",
+      description: "Thank you for saying yes! You've made me the happiest person! Happy Valentine's Day! 🌹",
       duration: 5000,
     });
 
@@ -43,7 +43,6 @@ export default function Home() {
       colors: ['#ff69b4', '#ff1493', '#ff69b4', '#ffffff']
     });
 
-    // Add a second burst of confetti for more festivity
     setTimeout(() => {
       confetti({
         particleCount: 50,
