@@ -14,6 +14,15 @@ export default function Home() {
     });
   };
 
+  const bounceAnimation = {
+    y: [0, -10, 0],
+    transition: {
+      duration: 1,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-100 to-red-50 flex flex-col items-center justify-center p-4">
       <motion.div
@@ -24,7 +33,7 @@ export default function Home() {
       >
         <Heart className="w-12 h-12 text-pink-400" fill="currentColor" />
       </motion.div>
-      
+
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -47,6 +56,7 @@ export default function Home() {
         <motion.div
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          animate={bounceAnimation}
         >
           <Button
             size="lg"
@@ -61,14 +71,7 @@ export default function Home() {
         <motion.div
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          animate={{
-            y: [0, -10, 0],
-          }}
-          transition={{
-            duration: 1,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
+          animate={bounceAnimation}
         >
           <Button
             size="lg"
