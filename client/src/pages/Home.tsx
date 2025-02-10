@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
 import { Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 import confetti from 'canvas-confetti';
@@ -24,16 +23,11 @@ function generateStars(count: number): Star[] {
 }
 
 export default function Home() {
-  const { toast } = useToast();
   const [stars] = useState<Star[]>(() => generateStars(50));
+  const [isAnswered, setIsAnswered] = useState(false);
 
   const handleYesClick = () => {
-    // Show toast message
-    toast({
-      title: "Yay! 💖",
-      description: "Thank you for saying yes! You've made me the happiest person! Happy Valentine's Day! 🌹",
-      duration: 5000,
-    });
+    setIsAnswered(true);
 
     // Trigger confetti
     confetti({
@@ -122,41 +116,42 @@ export default function Home() {
         className="relative z-10"
       >
         <h1 className="text-4xl md:text-6xl font-bold text-center text-white mb-12">
-          Will you be my Valentine?
+          {isAnswered ? "YAAAYYYY! 💖" : "Will you be my Valentine?"}
         </h1>
 
-        <div className="flex flex-col sm:flex-row gap-4">
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            animate={bounceAnimation}
-          >
-            <Button
-              size="lg"
-              variant="secondary"
-              className="bg-pink-400 hover:bg-pink-500 text-white text-xl px-8 py-6"
-              onClick={handleYesClick}
+        {!isAnswered && (
+          <div className="flex flex-col sm:flex-row gap-4">
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              animate={bounceAnimation}
             >
-              Yes
-            </Button>
-          </motion.div>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-pink-400 hover:bg-pink-500 text-white text-xl px-8 py-6"
+                onClick={handleYesClick}
+              >
+                Yes
+              </Button>
+            </motion.div>
 
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            animate={bounceAnimation}
-          >
-            <Button
-              size="lg"
-              variant="secondary"
-              className="bg-pink-400 hover:bg-pink-500 text-white text-xl px-8 py-6"
-              onClick={handleYesClick}
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              animate={bounceAnimation}
             >
-              Yes
-            </Button>
-          </motion.div>
-        </div>
-
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-pink-400 hover:bg-pink-500 text-white text-xl px-8 py-6"
+                onClick={handleYesClick}
+              >
+                Yes
+              </Button>
+            </motion.div>
+          </div>
+        )}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
